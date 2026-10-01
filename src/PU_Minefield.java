@@ -26,17 +26,6 @@ public class PU_Minefield extends PowerUp_Base {
         amount--;
         return false;
     }
-    public boolean defend(String input) {
-        input = network.receiveSignal();
-        System.out.println(input);
-        int x = transformSign(input.charAt(0));
-        int y = transformSign(input.charAt(1));
-        for (int x2 = x - 2, y2 = y - 2; x2 <= x + 2; x2++, y2++)
-            placeAttack(x2, y2, false);
-        for (int x2 = x - 2, y2 = y + 2; x2 <= x + 2; x2++, y2--)
-            placeAttack(x2, y2, false);
-        return true;
-    }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean placeMine() {

@@ -11,7 +11,7 @@ public class Base extends Thread{
     public PowerUp_Base     powerUp;
     public Settings         settings;
     public boolean          shieldIsActive;
-    protected char            indexB;
+    protected char          indexB;
 
     public Base() {}
     @SuppressWarnings("InstantiatingAThreadWithDefaultRunMethod")
@@ -23,7 +23,6 @@ public class Base extends Thread{
         this.scan       = new Scanner(System.in);
         this.powerUp    = new PowerUp_Base(this, false);
         this.settings   = new Settings(this, false, false, false, false);
-        //settings.setLanguage("");
         for (int outer = 0; outer != 10; outer++) {
             for (int inner = 0; inner != 10; inner++)
                 mapMe[outer][inner] = 32;
@@ -42,7 +41,7 @@ public class Base extends Thread{
         try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         settings.setShips(new char[10][10]);
         settings.setPowerUp(powerUp);
-        //chooseBoatSize();
+        printer.printMap();
         System.out.println(printer.gameBeginMess4);
         try { sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         if (network.role != 1) {                                                                                        //Condition deciding, who starts
@@ -60,9 +59,7 @@ public class Base extends Thread{
             if (gameOver(0)) break;
             shieldIsActive = powerUp.reduceCooldown();
             defend("");
-            if (gameOver(1)) break;
-
-        }
+            if (gameOver(1)) break;}
         try { network.closeConnection(); } catch (IOException e) {throw new RuntimeException(e);}
     }
     private boolean     gameOver(int qualifier) {
@@ -105,16 +102,28 @@ public class Base extends Thread{
                     return true;}
                 case Printer.shieldSignal -> mapEnemy[x][y] = Printer.shield;
                 case ("" + Printer.bombHit) -> mapEnemy[x][y] = Printer.bombHit;
-                case Printer.mine -> {mapEnemy[x][y] = Printer.bombHit; powerUp.defend(Printer.mine);}}
+                case Printer.mine -> {mapEnemy[x][y] = Printer.bombHit; input = network.receiveSignal();
+                    System.out.println(input);
+                    x = transformSign(input.charAt(0));
+                    y = transformSign(input.charAt(1));
+                    for (int x2 = x - 2, y2 = y - 2; x2 <= x + 2; x2++, y2++)
+                        if (x2 >= 0 && x2 <= 9 && y2 >= 0 && y2 <= 9)
+                            placeAttack(x2, y2, false);
+                    for (int x2 = x - 2, y2 = y + 2; x2 <= x + 2; x2++, y2--)
+                        if (x2 >= 0 && x2 <= 9 && y2 >= 0 && y2 <= 9)
+                            placeAttack(x2, y2, false);
+                    return true;}}
         } else {
             if (mapMe[x][y] == Printer.mines) {
                 mapMe[x][y] = Printer.bombHit;
                 network.sendSignal(Printer.mine);
                 network.sendSignal("" + ((char) (x + 97)) + ((char) (y + 48)));
                 for (int x2 = x - 2, y2 = y - 2; x2 <= x + 2; x2++, y2++)
-                    placeAttack(x2, y2, true);
+                    if (x2 >= 0 && x2 <= 9 && y2 >= 0 && y2 <= 9)
+                        placeAttack(x2, y2, true);
                 for (int x2 = x - 2, y2 = y + 2; x2 <= x + 2; x2++, y2--)
-                    placeAttack(x2, y2, true);
+                    if (x2 >= 0 && x2 <= 9 && y2 >= 0 && y2 <= 9)
+                        placeAttack(x2, y2, true);
             } else if (mapMe[x][y] == Printer.bombHit) {
                 network.sendSignal("" + Printer.bombHit);
             } else if (mapMe[x][y] == Printer.empty || mapMe[x][y] == Printer.miss) {
@@ -141,14 +150,14 @@ public class Base extends Thread{
         return (input.length() == 2 && ((input.charAt(0) >= 97 && input.charAt(0) <= 106) || (input.charAt(0) >= 65 && input.charAt(0) <= 74)) && input.charAt(1) >= 48 && input.charAt(1) <= 57);
     }
     protected int       transformSign(char sign)                    {
-            if (sign >= 48 && sign <= 57)
-                return (sign - 48);
-            else if (sign >= 97 && sign <= 106)
-                return (sign - 97);
-            else if (sign >= 65 && sign <= 74)
-                return (sign - 65);
-            return 0;
-        }
+        if (sign >= 48 && sign <= 57)
+            return (sign - 48);
+        else if (sign >= 97 && sign <= 106)
+            return (sign - 97);
+        else if (sign >= 65 && sign <= 74)
+            return (sign - 65);
+        return 0;
+    }
 
     //Placing ships
     private int         getID(String boat)                                                  {

@@ -29,9 +29,7 @@ public class Network {
         try {
             InetAddress address = InetAddress.getLocalHost();
             printer.printIP(address.getHostAddress());
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
+        } catch (UnknownHostException e) {throw new RuntimeException(e);}
     }
     public void     buildConnection() throws IOException    {
         if (role == 1) {
@@ -41,8 +39,7 @@ public class Network {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             if (Printer.cont.equals(in.readLine())) {
                 out.println(Printer.cont);
-                System.out.println(printer.connectedMess);
-            }
+                System.out.println(printer.connectedMess);}
         } else {
             clientSocket = new Socket(ip, 6666);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -50,8 +47,7 @@ public class Network {
             out.println(Printer.cont);
             System.out.println(printer.connectingMess);
             if (Printer.cont.equals(in.readLine()))
-                System.out.println(printer.connectedMess);
-        }
+                System.out.println(printer.connectedMess);}
     }
     public void     closeConnection() throws IOException    {
         in.close();
@@ -64,8 +60,6 @@ public class Network {
         try {
             return in.readLine();
         } catch (IOException e) {
-            return printer.errorMess;
-        }
-    }
+            return printer.errorMess;}}
     public void     sendSignal(String input)                {out.println(input);}
 }
