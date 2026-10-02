@@ -46,7 +46,7 @@ public class PowerUp_Base extends Base {
             input = scan.next();
             if (!validateIsNumber(input.charAt(1)))
                 return false;
-            switch (input.charAt(1)) {
+            switch (input.charAt(0)) {
                 case '1' -> {return pu1.attack("");}
                 case '2' -> {return pu2.attack("");}
                 case '3' -> {return pu3.attack("");}

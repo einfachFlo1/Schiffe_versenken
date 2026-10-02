@@ -22,7 +22,7 @@ public class Network {
             System.out.println("Waiting for Client...");
         } else {
             role = 0;
-            System.out.print("Please enter the IP");
+            System.out.print("Please enter the IP: ");
             ip = scan.next();}
     }
     public void     getIP()                                 {
