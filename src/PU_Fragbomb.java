@@ -19,7 +19,8 @@ public class PU_Fragbomb extends PowerUp_Base {
             return false;
         System.out.print(printer.powerUp2Mess);
         input = scan.next();
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         String output = input + Printer.empty;
         String strive = "";
         if (!validateInput(input)) {
@@ -36,7 +37,8 @@ public class PU_Fragbomb extends PowerUp_Base {
         network.sendSignal(Printer.fragBomb);
         network.sendSignal(output);
         powerUpHelper1(output);
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         printer.printMap();
         amount--;
         return true;

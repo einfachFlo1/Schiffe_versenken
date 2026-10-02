@@ -15,10 +15,12 @@ public class PU_Minefield extends PowerUp_Base {
     public boolean isSuppressed()       {return suppress;}
     public boolean reduceCooldown()     {return false;}
     public boolean attack(String input) {
-        if (amount == 0 || cooldown > 0)
+        if (amount <= 0 || cooldown > 0)
             return false;
         System.out.print("Place mine: ");
-        while (!placeMine()) {System.out.println(printer.notValidMess);}
+        while (!placeMine()) {
+            System.out.println(printer.notValidMess);
+        }
         printer.printMap();
         while (!placeMine()) {System.out.println(printer.notValidMess);}
         printer.printMap();
@@ -35,7 +37,7 @@ public class PU_Minefield extends PowerUp_Base {
         if (!validateInput(input))
             return false;
         if (mapMe[transformSign(input.charAt(0))][transformSign(input.charAt(1))] == Printer.empty)
-            mapMe[transformSign(input.charAt(0))][transformSign(input.charAt(1))] =Printer.mines;
+            mapMe[transformSign(input.charAt(0))][transformSign(input.charAt(1))] = Printer.mines;
         else
             return false;
         return true;

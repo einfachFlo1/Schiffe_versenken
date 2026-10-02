@@ -19,8 +19,11 @@ public class PU_Torpedo extends PowerUp_Base {
             return false;
         System.out.print(printer.powerUp1Mess);
         input = scan.next();
+        if (!validateIsLetter(input.charAt(0)) && !validateIsNumber(input.charAt(0)) && input.length() > 1)
+            return false;
         String output = "";
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         if (input.charAt(0) < 97 || input.charAt(0) > 106) {
             for (int counter = 0; counter < 11; counter++)
                 //noinspection ControlFlowStatementWithoutBraces,StringConcatenationInLoop
@@ -35,7 +38,8 @@ public class PU_Torpedo extends PowerUp_Base {
         network.sendSignal(Printer.torpedo);
         network.sendSignal(output);
         powerUpHelper1(output);
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         printer.printMap();
         amount--;
         return true;

@@ -25,7 +25,7 @@ public class PU_Crit extends PowerUp_Base {
         return false;
     }
     public boolean attack(String input) {
-        if (amount == 0 || cooldown > 0)
+        if (amount <= 0 || cooldown > 0)
             return false;
         network.sendSignal(Printer.crit);
         String output;

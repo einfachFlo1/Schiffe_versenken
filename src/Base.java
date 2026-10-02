@@ -147,7 +147,11 @@ public class Base extends Thread{
         return false;
     }
     protected boolean   validateInput(String input)                 {
-        return (input.length() == 2 && ((input.charAt(0) >= 97 && input.charAt(0) <= 106) || (input.charAt(0) >= 65 && input.charAt(0) <= 74)) && input.charAt(1) >= 48 && input.charAt(1) <= 57);
+        return (input.length() == 2 && validateIsLetter(input.charAt(0)) && validateIsNumber(input.charAt(1)));
+    }
+    protected boolean   validateIsNumber(char input)                {return (input >= 48 && input <= 57);}
+    protected boolean   validateIsLetter(char input)                {
+        return (input >= 97 && input <= 106) || (input >= 65 && input <= 74);
     }
     protected int       transformSign(char sign)                    {
         if (sign >= 48 && sign <= 57)

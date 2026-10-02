@@ -29,12 +29,15 @@ public class PU_Relocate extends PowerUp_Base {
             return false;
         System.out.println("which ship do you want to relocate?");
         String ship = scan.next();
+        if (!validateInput(ship))
+            return false;
         while (!findShip(transformSign(ship.charAt(0)), transformSign(ship.charAt(1)))) {
             System.out.println("Bitte wählen sie ein valides Schiff");
             ship = scan.next();}
         System.out.println("Platzieren Sie nun das Schiff neu");
         String start = scan.next();
         String end = scan.next();
+        while (!validateInput(start) || !validateInput(end)) {start = scan.next();end = scan.next();}
         int counter = 0;
         char copy = indexB;
         for (int outer = 0; outer != mapOrigin.length; outer++)
@@ -45,14 +48,12 @@ public class PU_Relocate extends PowerUp_Base {
         while (true) {
             if (1 + Math.abs((transformSign(start.charAt(0)) - transformSign(end.charAt(0))) - (transformSign(start.charAt(1)) - transformSign(end.charAt(1)))) != counter) {
                 System.out.println("Bitte geben Sie eine valide Länge an");
-                start = scan.next();
-                end = scan.next();
+                while (!validateInput(start) || !validateInput(end)) {start = scan.next();end = scan.next();}
                 continue;}
             if (placeDots(transformSign(start.charAt(0)), transformSign(start.charAt(1)), transformSign(end.charAt(0)), transformSign(end.charAt(1))))
                 break;
             System.out.println("Bitte geben Sie eine valide Position an");
-            start = scan.next();
-            end = scan.next();}
+            while (!validateInput(start) || !validateInput(end)) {start = scan.next();end = scan.next();}}
         indexB = copy;
         for (int outer = 0; outer != mapOrigin.length; outer++)
             for (int inner = 0; inner != mapOrigin[outer].length; inner++)

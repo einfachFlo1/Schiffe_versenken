@@ -44,10 +44,12 @@ public class PowerUp_Base extends Base {
                 return false;
             printMessage();
             input = scan.next();
-            switch (input) {
-                case "1" -> {return pu1.attack("");}
-                case "2" -> {return pu2.attack("");}
-                case "3" -> {return pu3.attack("");}
+            if (!validateIsNumber(input.charAt(1)))
+                return false;
+            switch (input.charAt(1)) {
+                case '1' -> {return pu1.attack("");}
+                case '2' -> {return pu2.attack("");}
+                case '3' -> {return pu3.attack("");}
                 default -> {return false;}
             }}
         return false;

@@ -28,13 +28,17 @@ public class PU_Multihit extends PowerUp_Base {
         if (amount == 0 || cooldown > 0)
             return false;
         network.sendSignal(Printer.multi);
-        input = scan.next();
-        network.sendSignal(input);
-        while (placeAttack(transformSign(input.charAt(0)), transformSign(input.charAt(1)), true)) {
+        while (true) {
+            System.out.print("Welches Feld soll angegriffen werden?: ");
+            input = scan.next();
+            if (!validateInput(input))
+                continue;
+            network.sendSignal(input);
+            if (!placeAttack(transformSign(input.charAt(0)), transformSign(input.charAt(1)), true)) {
+                break;
+            }
             System.out.println(printer.hitMess);
             printer.printMap();
-            input = scan.next();
-            network.sendSignal(input);
         }
         System.out.println(printer.missedMess);
         printer.printMap();

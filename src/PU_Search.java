@@ -1,4 +1,4 @@
-public class PU_Search extends PowerUp_Base{
+public class PU_Search extends PowerUp_Base {
     public PU_Search(Base base, boolean suppress)   {
         super(base, suppress);
         this.amount = 2;
@@ -29,16 +29,17 @@ public class PU_Search extends PowerUp_Base{
             return false;
         System.out.print(printer.powerUp3Mess);
         input = scan.next();
-        String output;
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         if (!validateInput(input)) {
-            System.out.println(printer.notValidMess);
             return false;}
+        String output;
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         network.sendSignal(Printer.search);
         network.sendSignal(input);
         output = network.receiveSignal();
         placeAttack(transformSign(output.charAt(0)), transformSign(output.charAt(1)), true);
-        try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
+        try {
+            sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         printer.printMap();
         amount--;
         cooldown = 3;
