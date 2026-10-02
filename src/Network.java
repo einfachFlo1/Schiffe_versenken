@@ -15,7 +15,7 @@ public class Network {
     public          Network(Printer printer)                {
         Scanner scan = new Scanner(System.in);
         this.printer = printer;
-        System.out.print("Host(H) or Client(any input)?");
+        System.out.print("Host (H) or Client (any input)?");
         if (scan.next().equals("H") || scan.next().equals("h")) {
             role = 1;
             getIP();
