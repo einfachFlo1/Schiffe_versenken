@@ -62,7 +62,7 @@ public class Printer extends Thread{
         System.out.println("4.) Torpedo:\n - bomb one entire row/column");
         System.out.println("5.) JammingDevice:\n - destroy a random powerUp your enemy owns");
         System.out.println("6.) SearchingMissile:\n - place a missile, which finds ships in a radius of 2");
-        System.out.println("7.) MinieField:\n - place to mines, which explode when hit by your enemy");
+        System.out.println("7.) MineField:\n - place 2 mines, which explode when hit by your enemy");
         System.out.println("8.) CriticalHit:\n - if the next attack hits a ship, it is immediately destroyed");
         System.out.println("9.) Relocate:\n - relocate one of your ships to another place");
     }

@@ -8,7 +8,7 @@ public class PU_Minefield extends PowerUp_Base {
     @Override
     public void printMessage()          {
         if (amount > 0)
-            System.out.print("Set 2 Mines, which explode on contact.");
+            System.out.print("Set 2 mines, which explode on contact.");
         else
             System.out.print("-");
     }
