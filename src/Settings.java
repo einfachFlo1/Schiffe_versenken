@@ -27,13 +27,13 @@ public class Settings extends Base {
             System.out.print("II:  - ");
             id2 = scan.nextInt();
             while (id2 == id1) {
-                System.out.println("IDs can only be used once\nII:  - ");
+                System.out.print("IDs can only be used once\nII:  - ");
                 id2 = scan.nextInt();}
             base.powerUp.chosePowerUp(2, id2);
             System.out.print("III: - ");
             id3 = scan.nextInt();
             while (id3 == id1 || id3 == id2) {
-                System.out.println("IDs can only be used once\nIII: - ");
+                System.out.print("IDs can only be used once\nIII: - ");
                 id3 = scan.nextInt();}
             base.powerUp.chosePowerUp(3, id3);
         } else

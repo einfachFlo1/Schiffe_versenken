@@ -16,7 +16,8 @@ public class Network {
         Scanner scan = new Scanner(System.in);
         this.printer = printer;
         System.out.print("Host (H) or Client (any input)?");
-        if (scan.next().equals("H") || scan.next().equals("h")) {
+        String input = scan.next();
+        if (input.equals("H") ||input.equals("h")) {
             role = 1;
             getIP();
             System.out.println("Waiting for Client...");
