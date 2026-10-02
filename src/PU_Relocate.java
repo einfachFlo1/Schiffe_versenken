@@ -32,7 +32,7 @@ public class PU_Relocate extends PowerUp_Base {
         if (!validateInput(ship))
             return false;
         while (!findShip(transformSign(ship.charAt(0)), transformSign(ship.charAt(1)))) {
-            System.out.println("Please chose a valid ship.");
+            System.out.println("Please choose a valid ship.");
             ship = scan.next();}
         System.out.println("Relocate your ship now.");
         String start = scan.next();

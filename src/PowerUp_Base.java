@@ -73,7 +73,7 @@ public class PowerUp_Base extends Base {
 
     //PowerUps helper
     public void         unSuppress()                    {suppress = false;}
-    public void         chosePowerUp(int index, int id) {
+    public void         choosePowerUp(int index, int id) {
         if (index == 1) {
             switch (id) {
                 case 1: pu1 = multiHit;break;

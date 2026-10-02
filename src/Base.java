@@ -182,7 +182,7 @@ public class Base extends Thread{
         int     id;
         String  inputStart;
         String  inputEnd;
-        System.out.print("Now, place your ships. You can chose from:\n" + "1.) " + boat1 + "\n2.) " + boat2 + "\n3.) " + boat3 + "\n4.) " + boat4);
+        System.out.print("Now, place your ships. You can choose from:\n" + "1.) " + boat1 + "\n2.) " + boat2 + "\n3.) " + boat3 + "\n4.) " + boat4);
         System.out.print("\nYou can place the ships by entering the start- and end position: ");
         while (!boat1.equals(Printer.dismiss) || !boat2.equals(Printer.dismiss) || !boat3.equals(Printer.dismiss) || !boat4.equals(Printer.dismiss)) {                                  //loops, while not all boats are placed
             inputStart   = scan.next();
@@ -245,7 +245,7 @@ public class Base extends Thread{
 
     //Moves
     public boolean      attack(String input) {
-        System.out.print("Your time to attack. Chose a field or write \"power\", to use a powerUp: ");
+        System.out.print("Your time to attack. Choose a field or write \"power\", to use a powerUp: ");
         input = scan.next();
         if (!powerUp.attack(input)) {
             if (!validateInput(input))

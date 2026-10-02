@@ -21,21 +21,21 @@ public class Settings extends Base {
         int id3;
         if (!this.powerUps) {
             base.printer.printPowerUpSelection();
-            System.out.print("Chose your powerUps by entering its ID:\nI:   - ");
+            System.out.print("Choose your powerUps by entering its ID:\nI:   - ");
             id1 = scan.nextInt();
-            base.powerUp.chosePowerUp(1, id1);
+            base.powerUp.choosePowerUp(1, id1);
             System.out.print("II:  - ");
             id2 = scan.nextInt();
             while (id2 == id1) {
                 System.out.print("IDs can only be used once\nII:  - ");
                 id2 = scan.nextInt();}
-            base.powerUp.chosePowerUp(2, id2);
+            base.powerUp.choosePowerUp(2, id2);
             System.out.print("III: - ");
             id3 = scan.nextInt();
             while (id3 == id1 || id3 == id2) {
                 System.out.print("IDs can only be used once\nIII: - ");
                 id3 = scan.nextInt();}
-            base.powerUp.chosePowerUp(3, id3);
+            base.powerUp.choosePowerUp(3, id3);
         } else
             base.powerUp = powerUps;
     }
