@@ -10,7 +10,7 @@ public class PU_Shield extends PowerUp_Base {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
-            System.out.print("Löse einen Schild aus, der dich 3 Runden lang schützt");
+            System.out.print("Shield your ships for the next 2 rounds.");
             if (amount > 1)
                 System.out.print(" (x2).");
             else
@@ -33,6 +33,7 @@ public class PU_Shield extends PowerUp_Base {
     public boolean attack(String input) {
         if (amount <= 0 || cooldown > 0)
             return false;
+        System.out.println("Your shield has been set up. Now you can attack.");
         suppress = true;
         amount--;
         cooldown = 4;

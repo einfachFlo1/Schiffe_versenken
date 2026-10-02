@@ -8,7 +8,7 @@ public class PU_Minefield extends PowerUp_Base {
     @Override
     public void printMessage()          {
         if (amount > 0)
-            System.out.print("Set 2 Mines, which explode on contact");
+            System.out.print("Set 2 Mines, which explode on contact.");
         else
             System.out.print("-");
     }
@@ -18,12 +18,11 @@ public class PU_Minefield extends PowerUp_Base {
         if (amount <= 0 || cooldown > 0)
             return false;
         System.out.print("Place mine: ");
-        while (!placeMine()) {
-            System.out.println(printer.notValidMess);
-        }
+        while (!placeMine()) {System.out.println(printer.notValidMess);}
         printer.printMap();
         while (!placeMine()) {System.out.println(printer.notValidMess);}
         printer.printMap();
+        System.out.println("Your mines have been placed. Now you can attack.");
         suppress = true;
         amount--;
         return false;

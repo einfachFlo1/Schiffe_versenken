@@ -1,5 +1,5 @@
-public class PU_Fragbomb extends PowerUp_Base {
-    public PU_Fragbomb(Base base, boolean suppress) {
+public class PU_FragBomb extends PowerUp_Base {
+    public PU_FragBomb(Base base, boolean suppress) {
         super(base, suppress);
         amount = 1;
         cooldown = 0;
@@ -8,7 +8,7 @@ public class PU_Fragbomb extends PowerUp_Base {
     @Override
     public void printMessage()                      {
         if (amount > 0)
-            System.out.print("Platziere eine Bombe, die zufällige Felder um sich herrum trifft.");
+            System.out.print("Place a bomb, which hits random fields surrounding it.");
         else
             System.out.print("-");
     }
@@ -17,7 +17,7 @@ public class PU_Fragbomb extends PowerUp_Base {
     public boolean attack(String input)             {
         if (amount <= 0)
             return false;
-        System.out.print(printer.powerUp2Mess);
+        System.out.println("Place your fragmentation bomb!");
         input = scan.next();
         try {
             sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
@@ -44,7 +44,7 @@ public class PU_Fragbomb extends PowerUp_Base {
         return true;
     }
     public boolean defend(String input)             {
-        System.out.println(printer.powerUpUsedMess);
+        System.out.println(printer.pUUsed);
         input = network.receiveSignal();
         for (int x = transformSign(input.charAt(0)), y = transformSign(input.charAt(1)); input.length() > 3; input = input.substring(3), x = transformSign(input.charAt(0)), y = transformSign(input.charAt(1))) {
             if (x >= 0 && y >= 0 && x <= 9 && y <= 9) {

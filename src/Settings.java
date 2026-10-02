@@ -1,29 +1,20 @@
 import java.util.Scanner;
 
 public class Settings extends Base {
-    private final boolean language;
     private final boolean powerUps;
     private final boolean shipDistribution;
     private final boolean ships;
     private final Base    base;
     Scanner scan;
 
-    public Settings(Base base, boolean language, boolean powerUps, boolean shipDistribution, boolean ships) {
+    public Settings(Base base, boolean powerUps, boolean shipDistribution, boolean ships) {
         this.base               = base;
-        this.language           = language;
         this.powerUps           = powerUps;
         this.shipDistribution   = shipDistribution;
         this.ships              = ships;
         scan = new Scanner(System.in);
     }
 
-    public void setLanguage(String language)        {
-        if (!this.language) {
-            System.out.print("German (default) or english (E)?: ");
-            base.printer.setLanguage(scan.next());
-        } else
-            base.printer.setLanguage(language);
-    }
     public void setPowerUp(PowerUp_Base powerUps)   {
         int id1;
         int id2;
@@ -36,13 +27,13 @@ public class Settings extends Base {
             System.out.print("II:  - ");
             id2 = scan.nextInt();
             while (id2 == id1) {
-                System.out.println("IDs können nur einmalig verwendet werden\nII:  - ");
+                System.out.println("IDs can only be used once\nII:  - ");
                 id2 = scan.nextInt();}
             base.powerUp.chosePowerUp(2, id2);
             System.out.print("III: - ");
             id3 = scan.nextInt();
             while (id3 == id1 || id3 == id2) {
-                System.out.println("IDs können nur einmalig verwendet werden\nIII: - ");
+                System.out.println("IDs can only be used once\nIII: - ");
                 id3 = scan.nextInt();}
             base.powerUp.chosePowerUp(3, id3);
         } else
@@ -51,7 +42,7 @@ public class Settings extends Base {
     public int[] setShipDistribution(int[] boats)   {
         if (!this.shipDistribution) {
             int[] newBoats = new int[4];
-            System.out.println(base.printer.boatsExplMess);
+            System.out.println("Please enter the lengths of your boats.\nYou have to enter 4 boats. These can vary between 2 to 6 fields. By using 0 you delete one boat.\nOverall your boats have to be equivalent to 15 fields.");
             for (int counter = 0; counter < 4; counter++)
                 for (newBoats[counter] = scan.nextLine().charAt(0) - 48; !(newBoats[counter] <= 6 && boats[counter] >= 2) && !(boats[counter] == 0); boats[counter] = scan.nextLine().charAt(0) - 48)
                     System.out.println(base.printer.notValidMess);

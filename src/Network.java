@@ -15,14 +15,14 @@ public class Network {
     public          Network(Printer printer)                {
         Scanner scan = new Scanner(System.in);
         this.printer = printer;
-        System.out.print(printer.hostOrClientMess);
-        if (scan.next().equals("H")) {
+        System.out.print("Host(H) or Client(any input)?");
+        if (scan.next().equals("H") || scan.next().equals("h")) {
             role = 1;
             getIP();
-            System.out.println(printer.waitClientMess);
+            System.out.println("Waiting for Client...");
         } else {
             role = 0;
-            System.out.print(printer.enterIPMess);
+            System.out.print("Please enter the IP");
             ip = scan.next();}
     }
     public void     getIP()                                 {
@@ -39,15 +39,15 @@ public class Network {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             if (Printer.cont.equals(in.readLine())) {
                 out.println(Printer.cont);
-                System.out.println(printer.connectedMess);}
+                System.out.println("Connected!");}
         } else {
             clientSocket = new Socket(ip, 6666);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out.println(Printer.cont);
-            System.out.println(printer.connectingMess);
+            System.out.println("Connecting...");
             if (Printer.cont.equals(in.readLine()))
-                System.out.println(printer.connectedMess);}
+                System.out.println("Connected!");}
     }
     public void     closeConnection() throws IOException    {
         in.close();

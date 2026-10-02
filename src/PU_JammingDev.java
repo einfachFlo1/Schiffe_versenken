@@ -1,6 +1,6 @@
-public class PU_Jammer extends PowerUp_Base {
+public class PU_JammingDev extends PowerUp_Base {
     Base base;
-    public PU_Jammer(Base base, boolean suppress)   {
+    public PU_JammingDev(Base base, boolean suppress)   {
         super(base, suppress);
         this.base = base;
         amount = 2;
@@ -12,7 +12,7 @@ public class PU_Jammer extends PowerUp_Base {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
-            System.out.print("Benutze den Jammer, um ein gegnerisches PowerUp zu zerstören");
+            System.out.print("Use the jamming device, to destroy an enemies PowerUp.");
             if (amount > 1)
                 System.out.print(" (x2).");
             else
@@ -29,13 +29,15 @@ public class PU_Jammer extends PowerUp_Base {
     public boolean attack(String input) {
         if (amount <= 0 || cooldown > 0)
             return false;
-        network.sendSignal(Printer.jammer);
+        System.out.println("A powerUp has been stolen. Now you can attack.");
+        network.sendSignal(Printer.jamming);
         suppress = true;
         amount--;
         cooldown = 4;
         return false;
     }
     public boolean defend(String input) {
+        System.out.println(printer.pUUsed);
         switch ((((int)(Math.random() * 10)) % 3) + 1) {
             case 1:
                 if (base.powerUp.pu1.amount > 0) {

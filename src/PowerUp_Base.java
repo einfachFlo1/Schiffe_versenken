@@ -6,14 +6,14 @@ public class PowerUp_Base extends Base {
     public PowerUp_Base     pu2;
     public PowerUp_Base     pu3;
 
-    PU_Multihit     multiHit;
+    PU_MultiHit multiHit;
     PU_Shield       shield;
-    PU_Fragbomb     fragBomb;
+    PU_FragBomb     fragBomb;
     PU_Torpedo      torpedo;
-    PU_Jammer       jammer;
+    PU_JammingDev   jammingDev;
     PU_Search       search;
     PU_Minefield    minefield;
-    PU_Crit         critical;
+    PU_Critical     critical;
     PU_Relocate     relocate;
 
     public PowerUp_Base() {}
@@ -26,14 +26,14 @@ public class PowerUp_Base extends Base {
         this.printer    = base.printer;
         this.suppress   = false;
         if (!suppress) {
-            multiHit    = new PU_Multihit(base, true);
+            multiHit    = new PU_MultiHit(base, true);
             shield      = new PU_Shield(base, true);
-            fragBomb    = new PU_Fragbomb(base, true);
+            fragBomb    = new PU_FragBomb(base, true);
             torpedo     = new PU_Torpedo(base, true);
-            jammer      = new PU_Jammer(base, true);
+            jammingDev  = new PU_JammingDev(base, true);
             search      = new PU_Search(base, true);
             minefield   = new PU_Minefield(base, true);
-            critical    = new PU_Crit(base, true);
+            critical    = new PU_Critical(base, true);
             relocate    = new PU_Relocate(base, true);}
     }
 
@@ -62,10 +62,10 @@ public class PowerUp_Base extends Base {
             case Printer.multi -> multiHit.defend("");
             case Printer.fragBomb -> fragBomb.defend("");
             case Printer.torpedo -> torpedo.defend("");
-            case Printer.jammer -> jammer.defend("");
+            case Printer.jamming -> jammingDev.defend("");
             case Printer.search -> search.defend("");
             case Printer.mine -> minefield.defend("");
-            case Printer.crit -> critical.defend("");
+            case Printer.critical -> critical.defend("");
             case Printer.relocate -> relocate.defend("");
             default -> false;
         };
@@ -80,7 +80,7 @@ public class PowerUp_Base extends Base {
                 case 2: pu1 = shield;break;
                 case 3: pu1 = fragBomb;break;
                 case 4: pu1 = torpedo;break;
-                case 5: pu1 = jammer;break;
+                case 5: pu1 = jammingDev;break;
                 case 6: pu1 = search;break;
                 case 7: pu1 = minefield;break;
                 case 8: pu1 = critical;break;
@@ -91,7 +91,7 @@ public class PowerUp_Base extends Base {
                 case 2: pu2 = shield;break;
                 case 3: pu2 = fragBomb;break;
                 case 4: pu2 = torpedo;break;
-                case 5: pu2 = jammer;break;
+                case 5: pu2 = jammingDev;break;
                 case 6: pu2 = search;break;
                 case 7: pu2 = minefield;break;
                 case 8: pu2 = critical;break;
@@ -102,25 +102,25 @@ public class PowerUp_Base extends Base {
                 case 2: pu3 = shield;break;
                 case 3: pu3 = fragBomb;break;
                 case 4: pu3 = torpedo;break;
-                case 5: pu3 = jammer;break;
+                case 5: pu3 = jammingDev;break;
                 case 6: pu3 = search;break;
                 case 7: pu3 = minefield;break;
                 case 8: pu3 = critical;break;
                 case 9: relocate.setShips(mapOrigin);pu3 = relocate;break;}}
     }
     public void         printMessage()                  {
-        System.out.print(printer.powerUpActiveMess);
+        System.out.print("PowerUp active, chose one and enter it's index.");
         System.out.print("\n(1) ");
         pu1.printMessage();
         System.out.print("\n(2) ");
         pu2.printMessage();
         System.out.print("\n(3) ");
         pu3.printMessage();
-        System.out.println(printer.backToAttackMess);
+        System.out.println("(default num) back to regular attack");
     }
     public boolean      isSuppressed()                  {
         if  (pu1.isSuppressed() || pu2.isSuppressed() || pu3.isSuppressed()) {
-            System.out.println("Powerups are suppressed");
+            System.out.println("PowerUps are suppressed");
             return true; }
         if (pu1.amount == 0 && pu2.amount == 0 && pu3.amount == 0) {
             System.out.println("No more PowerUps left");

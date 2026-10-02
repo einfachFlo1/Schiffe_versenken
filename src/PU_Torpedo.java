@@ -8,7 +8,7 @@ public class PU_Torpedo extends PowerUp_Base {
     @Override
     public void printMessage()          {
         if (amount > 0)
-            System.out.print("Platziere einen Torpedo, um eine gesammte Reihe/Spalte zu treffen.");
+            System.out.print("Place a torpedo, which hits an entire row/column.");
         else
             System.out.print("-");
     }
@@ -17,7 +17,7 @@ public class PU_Torpedo extends PowerUp_Base {
     public boolean attack(String input) {
         if (amount <= 0)
             return false;
-        System.out.print(printer.powerUp1Mess);
+        System.out.println("Place your torpedo.");
         input = scan.next();
         if (!validateIsLetter(input.charAt(0)) && !validateIsNumber(input.charAt(0)) && input.length() > 1)
             return false;
@@ -45,7 +45,7 @@ public class PU_Torpedo extends PowerUp_Base {
         return true;
     }
     public boolean defend(String input) {
-        System.out.println(printer.powerUpUsedMess);
+        System.out.println(printer.pUUsed);
         input = network.receiveSignal();
         for (int x = transformSign(input.charAt(0)), y = transformSign(input.charAt(1)); input.length() > 3; input = input.substring(3), x = transformSign(input.charAt(0)), y = transformSign(input.charAt(1))) {
             if (x >= 0 && y >= 0 && x <= 9 && y <= 9) {

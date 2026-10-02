@@ -10,7 +10,7 @@ public class PU_Search extends PowerUp_Base {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
-            System.out.print("Platziere eine Suschrakete, die in einem Radius von 2 Feldern Schiffe findet");
+            System.out.print("Place a searching rocket, which finds ships in a 2 space radius.");
             if (amount > 1)
                 System.out.print(" (x2).");
             else
@@ -27,7 +27,7 @@ public class PU_Search extends PowerUp_Base {
     public boolean attack(String input) {
         if (amount <= 0 || cooldown > 0)
             return false;
-        System.out.print(printer.powerUp3Mess);
+        System.out.println("Place your searching Rocket.");
         input = scan.next();
         if (!validateInput(input)) {
             return false;}
@@ -46,8 +46,8 @@ public class PU_Search extends PowerUp_Base {
         return true;
     }
     public boolean defend(String input) {
+        System.out.println(printer.pUUsed);
         powerUpSearch(network.receiveSignal(), 0);
-        System.out.println(printer.powerUpUsedMess);
         return true;
     }
 

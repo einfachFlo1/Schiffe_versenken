@@ -1,5 +1,5 @@
-public class PU_Multihit extends PowerUp_Base {
-    public PU_Multihit(Base base, boolean suppress)     {
+public class PU_MultiHit extends PowerUp_Base {
+    public PU_MultiHit(Base base, boolean suppress)     {
         super(base, suppress);
         amount = 2;
         cooldown = 0;
@@ -10,7 +10,7 @@ public class PU_Multihit extends PowerUp_Base {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
-            System.out.print("Solang deine Schüsse treffen, darfst du weiter schießen");
+            System.out.print("While hitting an enemies ship, you are allowed to shoot again.");
             if (amount > 1)
                 System.out.print(" (x2).");
             else
@@ -29,17 +29,15 @@ public class PU_Multihit extends PowerUp_Base {
             return false;
         network.sendSignal(Printer.multi);
         while (true) {
-            System.out.print("Welches Feld soll angegriffen werden?: ");
+            System.out.print("Which field do you attack?: ");
             input = scan.next();
             if (!validateInput(input))
                 continue;
             network.sendSignal(input);
             if (!placeAttack(transformSign(input.charAt(0)), transformSign(input.charAt(1)), true)) {
-                break;
-            }
+                break;}
             System.out.println(printer.hitMess);
-            printer.printMap();
-        }
+            printer.printMap();}
         System.out.println(printer.missedMess);
         printer.printMap();
         amount--;
@@ -47,6 +45,7 @@ public class PU_Multihit extends PowerUp_Base {
         return true;
     }
     public boolean defend(String input) {
+        System.out.println(printer.pUUsed);
         input = network.receiveSignal();
         while (placeAttack(transformSign(input.charAt(0)), transformSign(input.charAt(1)), false)) {
             System.out.println(printer.hitMess);

@@ -22,7 +22,7 @@ public class Base extends Thread{
         this.network    = new Network(printer);
         this.scan       = new Scanner(System.in);
         this.powerUp    = new PowerUp_Base(this, false);
-        this.settings   = new Settings(this, false, false, false, false);
+        this.settings   = new Settings(this, false, false, false);
         for (int outer = 0; outer != 10; outer++) {
             for (int inner = 0; inner != 10; inner++)
                 mapMe[outer][inner] = 32;
@@ -36,13 +36,13 @@ public class Base extends Thread{
 
     //Game loop
     public void         gameBegin()             {
-        System.out.println(printer.gameBeginMess1);
+        System.out.println("The battle begins!\nthese are the battlefields:");
         printer.printMap();
         try {sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         settings.setShips(new char[10][10]);
         settings.setPowerUp(powerUp);
         printer.printMap();
-        System.out.println(printer.gameBeginMess4);
+        System.out.println("Let the battle begin!");
         try { sleep(700);} catch (InterruptedException e) {throw new RuntimeException(e);}
         if (network.role != 1) {                                                                                        //Condition deciding, who starts
             String order = Integer.toString(((int) (Math.random() * 10)) % 2);
@@ -71,11 +71,11 @@ public class Base extends Thread{
                             return false;}
                 network.sendSignal(Printer.end);
                 powerUp.shieldIsActive = shieldIsActive;
-                System.out.println(printer.loseMess);
+                System.out.println("You've lost...");
                 return true;
             } else {                                                                                                        //Checks, if enemy lost
                 if (network.receiveSignal().equals(Printer.end)) {
-                    System.out.println(printer.winMess);
+                    System.out.println("You won!");
                     return true;}}
             return false;
         }
@@ -97,13 +97,12 @@ public class Base extends Thread{
                     mapEnemy[x][y] = Printer.hit;
                     return true;}
                 case Printer.destroyedSignal -> {
-                    System.out.println(printer.shipDestroyedMess);
+                    System.out.println("A ship has been destroyed");
                     mapEnemy[x][y] = Printer.hit;
                     return true;}
                 case Printer.shieldSignal -> mapEnemy[x][y] = Printer.shield;
                 case ("" + Printer.bombHit) -> mapEnemy[x][y] = Printer.bombHit;
                 case Printer.mine -> {mapEnemy[x][y] = Printer.bombHit; input = network.receiveSignal();
-                    System.out.println(input);
                     x = transformSign(input.charAt(0));
                     y = transformSign(input.charAt(1));
                     for (int x2 = x - 2, y2 = y - 2; x2 <= x + 2; x2++, y2++)
@@ -138,7 +137,7 @@ public class Base extends Thread{
                     network.sendSignal(Printer.shieldSignal);
                     return false;}
                 if (!checkDestroyed(x, y)) {
-                    System.out.println(printer.shipDestroyedMess);
+                    System.out.println("A ship has been destroyed");
                     network.sendSignal(Printer.destroyedSignal);
                 } else {
                     network.sendSignal(Printer.hitSignal);}
@@ -183,8 +182,8 @@ public class Base extends Thread{
         int     id;
         String  inputStart;
         String  inputEnd;
-        System.out.print(printer.gameBeginMess2 + "1.) " + boat1 + "\n2.) " + boat2 + "\n3.) " + boat3 + "\n4.) " + boat4);
-        System.out.print(printer.gameBeginMess3);
+        System.out.print("Now, place your ships. You can chose from:\n" + "1.) " + boat1 + "\n2.) " + boat2 + "\n3.) " + boat3 + "\n4.) " + boat4);
+        System.out.print("\nYou can place the ships by entering the start- and end position: ");
         while (!boat1.equals(Printer.dismiss) || !boat2.equals(Printer.dismiss) || !boat3.equals(Printer.dismiss) || !boat4.equals(Printer.dismiss)) {                                  //loops, while not all boats are placed
             inputStart   = scan.next();
             inputEnd     = scan.next();
@@ -207,14 +206,14 @@ public class Base extends Thread{
                     placePieces(boat1, boat2, boat3, boat4);
                     break;}
                 printer.printMap();
-                System.out.println(printer.shipPlacedMess);
+                System.out.println("A ship has been placed!");
             } else {
-                System.out.println(printer.notValidRetryMess);
+                System.out.println("Invalid entry, please try again.");
                 placePieces(boat1, boat2, boat3, boat4);
                 break;}
             if (!boat1.equals(boat2) || !boat1.equals(boat3) || !boat1.equals(boat4)) {
-                System.out.print(printer.stillOpenMess + "\n 1.) " + boat1 + "\n 2.) " + boat2 + "\n 3.) " + boat3 + "\n 4.) " + boat4 + "\n");
-                System.out.print(printer.placeNext);}}
+                System.out.print("Still open:\n" + "\n 1.) " + boat1 + "\n 2.) " + boat2 + "\n 3.) " + boat3 + "\n 4.) " + boat4 + "\n");
+                System.out.print("place your next ship. ");}}
     }
     protected boolean   placeDots(int start0, int start1, int end0, int end1)               {
         int runV1 = start1;
@@ -246,8 +245,7 @@ public class Base extends Thread{
 
     //Moves
     public boolean      attack(String input) {
-        System.out.print(printer.attackMess);
-        System.out.print(printer.powerUpMess);
+        System.out.print("Your time to attack. Chose a field or write \"power\", to use a powerUp: ");
         input = scan.next();
         if (!powerUp.attack(input)) {
             if (!validateInput(input))
@@ -268,7 +266,7 @@ public class Base extends Thread{
     }
     public boolean      defend(String input) {
         Thread printDots = new Printer(this);
-        System.out.print(printer.enemyAttackMess);
+        System.out.print("Your enemy attacks now.");
         printDots.start();
         input = network.receiveSignal();
         printDots.interrupt();

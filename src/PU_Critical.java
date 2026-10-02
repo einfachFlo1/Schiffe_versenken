@@ -1,5 +1,5 @@
-public class PU_Crit extends PowerUp_Base {
-    public PU_Crit(Base base, boolean suppress)     {
+public class PU_Critical extends PowerUp_Base {
+    public PU_Critical(Base base, boolean suppress)     {
         super(base, suppress);
         amount = 2;
         cooldown = 0;
@@ -10,7 +10,7 @@ public class PU_Crit extends PowerUp_Base {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
-            System.out.print("Das nächste Schiff, das du triffst wird direkt zerstört");
+            System.out.print("The next ship you hit is immediately destroyed.");
             if (amount > 1)
                 System.out.print(" (x2).");
             else
@@ -27,7 +27,8 @@ public class PU_Crit extends PowerUp_Base {
     public boolean attack(String input) {
         if (amount <= 0 || cooldown > 0)
             return false;
-        network.sendSignal(Printer.crit);
+        System.out.println("Place your attack!");
+        network.sendSignal(Printer.critical);
         String output;
         input = scan.next();
         if (!validateInput(input)) {
@@ -49,6 +50,7 @@ public class PU_Crit extends PowerUp_Base {
         }
     }
     public boolean defend(String input) {
+        System.out.println(printer.pUUsed);
         input = network.receiveSignal();
         int x = transformSign(input.charAt(0));
         int y = transformSign(input.charAt(1));
