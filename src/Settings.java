@@ -43,9 +43,10 @@ public class Settings extends Base {
         if (!this.shipDistribution) {
             int[] newBoats = new int[4];
             System.out.println("Please enter the lengths of your boats.\nYou have to enter 4 boats. These can vary between 2 to 6 fields. By using 0 you delete one boat.\nOverall your boats have to be equivalent to 15 fields.");
-            for (int counter = 0; counter < 4; counter++)
+            for (int counter = 0; counter < 4; counter++) {
+                System.out.print((counter + 1) + ": ");
                 for (newBoats[counter] = scan.nextLine().charAt(0) - 48; !(newBoats[counter] <= 6 && boats[counter] >= 2) && !(boats[counter] == 0); boats[counter] = scan.nextLine().charAt(0) - 48)
-                    System.out.println(base.printer.notValidMess);
+                    System.out.println(base.printer.notValidMess); }
             if (newBoats[0] + newBoats[1] + newBoats[2] + newBoats[3] != 15) {
                 System.out.println(base.printer.notValidMess);
                 return setShipDistribution(new int[4]);

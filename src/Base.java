@@ -212,7 +212,7 @@ public class Base extends Thread{
                 placePieces(boat1, boat2, boat3, boat4);
                 break;}
             if (!boat1.equals(boat2) || !boat1.equals(boat3) || !boat1.equals(boat4)) {
-                System.out.print("Still open:\n" + "\n 1.) " + boat1 + "\n 2.) " + boat2 + "\n 3.) " + boat3 + "\n 4.) " + boat4 + "\n");
+                System.out.print("Still open:\n" + " 1.) " + boat1 + "\n 2.) " + boat2 + "\n 3.) " + boat3 + "\n 4.) " + boat4 + "\n");
                 System.out.print("place your next ship. ");}}
     }
     protected boolean   placeDots(int start0, int start1, int end0, int end1)               {
