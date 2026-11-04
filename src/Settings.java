@@ -15,7 +15,7 @@ public class Settings extends Base {
         scan = new Scanner(System.in);
     }
 
-    public void setPowerUp(PowerUp_Base powerUps)   {
+    public void     setPowerUp(PowerUp_Base powerUps)   {
         int id1;
         int id2;
         int id3;
@@ -39,7 +39,7 @@ public class Settings extends Base {
         } else
             base.powerUp = powerUps;
     }
-    public int[] setShipDistribution(int[] boats)   {
+    public int[]    setShipDistribution(int[] boats)    {
         if (!this.shipDistribution) {
             int[] newBoats = new int[4];
             System.out.println("Please enter the lengths of your boats.\nYou have to enter 4 boats. These can vary between 2 to 6 fields. By using 0 you delete one boat.\nOverall your boats have to be equivalent to 15 fields.");
@@ -55,7 +55,7 @@ public class Settings extends Base {
         } else
             return boats;
     }
-    public void setShips(char[][] ships)            {
+    public void     setShips(char[][] ships)            {
         if (!this.ships) {
             int[] boats = setShipDistribution(new int[4]);
             base.placePieces(buildBoat(boats[0]), buildBoat(boats[1]), buildBoat(boats[2]), buildBoat(boats[3]));

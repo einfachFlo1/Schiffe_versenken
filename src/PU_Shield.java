@@ -6,7 +6,7 @@ public class PU_Shield extends PowerUp_Base {
     }
 
     @Override
-    public void printMessage()          {
+    public void     printMessage()          {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
@@ -19,8 +19,8 @@ public class PU_Shield extends PowerUp_Base {
             System.out.print("-");
         System.out.print(Printer.RESET);
     }
-    public boolean isSuppressed()       {return suppress;}
-    public boolean reduceCooldown()     {
+    public boolean  isSuppressed()          {return suppress;}
+    public boolean  reduceCooldown()        {
         cooldown--;
         if (cooldown > 0)
             return true;
@@ -30,7 +30,7 @@ public class PU_Shield extends PowerUp_Base {
                     mapMe[outer][inner] = (char) ((int) mapMe[outer][inner] - 10);
         return false;
     }
-    public boolean attack(String input) {
+    public boolean  attack(String input)    {
         if (amount <= 0 || cooldown > 0)
             return false;
         System.out.println("Your shield has been set up. Now you can attack.");

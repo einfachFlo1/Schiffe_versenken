@@ -6,7 +6,7 @@ public class PU_Critical extends PowerUp_Base {
     }
 
     @Override
-    public void printMessage()          {
+    public void     printMessage()          {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
@@ -19,12 +19,12 @@ public class PU_Critical extends PowerUp_Base {
             System.out.print("-");
         System.out.print(Printer.RESET);
     }
-    public boolean isSuppressed()       {return suppress;}
-    public boolean reduceCooldown()     {
+    public boolean  isSuppressed()          {return suppress;}
+    public boolean  reduceCooldown()        {
         cooldown--;
         return false;
     }
-    public boolean attack(String input) {
+    public boolean  attack(String input)    {
         if (amount <= 0 || cooldown > 0)
             return false;
         System.out.println("Place your attack!");
@@ -49,7 +49,7 @@ public class PU_Critical extends PowerUp_Base {
             return true;
         }
     }
-    public boolean defend(String input) {
+    public boolean  defend(String input)    {
         System.out.println(printer.pUUsed);
         input = network.receiveSignal();
         int x = transformSign(input.charAt(0));

@@ -6,7 +6,7 @@ public class PowerUp_Base extends Base {
     public PowerUp_Base     pu2;
     public PowerUp_Base     pu3;
 
-    PU_MultiHit multiHit;
+    PU_MultiHit     multiHit;
     PU_Shield       shield;
     PU_FragBomb     fragBomb;
     PU_Torpedo      torpedo;

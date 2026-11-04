@@ -6,15 +6,15 @@ public class PU_Minefield extends PowerUp_Base {
     }
 
     @Override
-    public void printMessage()          {
+    public void     printMessage()          {
         if (amount > 0)
             System.out.print("Set 2 mines, which explode on contact.");
         else
             System.out.print("-");
     }
-    public boolean isSuppressed()       {return suppress;}
-    public boolean reduceCooldown()     {return false;}
-    public boolean attack(String input) {
+    public boolean  isSuppressed()          {return suppress;}
+    public boolean  reduceCooldown()        {return false;}
+    public boolean  attack(String input)    {
         if (amount <= 0 || cooldown > 0)
             return false;
         System.out.print("Place mine: ");

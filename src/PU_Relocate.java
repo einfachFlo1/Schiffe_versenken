@@ -6,7 +6,7 @@ public class PU_Relocate extends PowerUp_Base {
     }
 
     @Override
-    public void printMessage()          {
+    public void     printMessage()          {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
@@ -19,12 +19,12 @@ public class PU_Relocate extends PowerUp_Base {
             System.out.print("-");
         System.out.print(Printer.RESET);
     }
-    public boolean isSuppressed()       {return suppress;}
-    public boolean reduceCooldown()     {
+    public boolean  isSuppressed()          {return suppress;}
+    public boolean  reduceCooldown()        {
         cooldown--;
         return false;
     }
-    public boolean attack(String input) {
+    public boolean  attack(String input)    {
         if (amount == 0 || cooldown < 0)
             return false;
         System.out.println("Which ship do you want to relocate?");
@@ -71,12 +71,12 @@ public class PU_Relocate extends PowerUp_Base {
         return false;
     }
 
-    public void setShips(char[][] mapOrigin)            {
+    public void     setShips(char[][] mapOrigin)            {
         this.mapOrigin = new char[10][10];
         for (int outer = 0; outer != mapOrigin.length; outer++)
             System.arraycopy(mapOrigin[outer], 0, this.mapOrigin[outer], 0, mapOrigin.length);
     }
-    private boolean findShip(int x, int y)              {
+    private boolean findShip(int x, int y)                  {
         if (mapOrigin[x][y] != ' ') {
             indexB = mapOrigin[x][y];
             for (char[] outer : mapMe)
@@ -86,7 +86,7 @@ public class PU_Relocate extends PowerUp_Base {
         }
         return false;
     }
-    private void setToOrigin(String start, String end)  {
+    private void    setToOrigin(String start, String end)   {
         char[][] copy = mapMe;
         mapMe = mapOrigin;
         mapOrigin = copy;
@@ -95,7 +95,7 @@ public class PU_Relocate extends PowerUp_Base {
         mapMe = mapOrigin;
         mapOrigin = copy;
     }
-    private void setPieces(char piece)                  {
+    private void    setPieces(char piece)                   {
         for (int outer = 0; outer != mapMe.length; outer++)
             for (int inner = 0; inner != mapMe[outer].length; inner++)
                 if (mapMe[outer][inner] == 6) {

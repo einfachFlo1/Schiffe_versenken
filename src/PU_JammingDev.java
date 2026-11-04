@@ -8,7 +8,7 @@ public class PU_JammingDev extends PowerUp_Base {
     }
 
     @Override
-    public void printMessage()          {
+    public void     printMessage()          {
         if (amount > 0) {
             if (cooldown > 0)
                 System.out.print(Printer.BLACK);
@@ -21,12 +21,12 @@ public class PU_JammingDev extends PowerUp_Base {
             System.out.print("-");
         System.out.print(Printer.RESET);
     }
-    public boolean isSuppressed()       {return suppress;}
-    public boolean reduceCooldown()     {
+    public boolean  isSuppressed()          {return suppress;}
+    public boolean  reduceCooldown()        {
         cooldown--;
         return false;
     }
-    public boolean attack(String input) {
+    public boolean  attack(String input)    {
         if (amount <= 0 || cooldown > 0)
             return false;
         System.out.println("A powerUp has been stolen. Now you can attack.");
@@ -36,7 +36,7 @@ public class PU_JammingDev extends PowerUp_Base {
         cooldown = 4;
         return false;
     }
-    public boolean defend(String input) {
+    public boolean  defend(String input)    {
         System.out.println(printer.pUUsed);
         switch ((((int)(Math.random() * 10)) % 3) + 1) {
             case 1:
