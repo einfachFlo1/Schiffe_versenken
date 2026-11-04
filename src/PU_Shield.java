@@ -33,7 +33,7 @@ public class PU_Shield extends PowerUp_Base {
     public boolean  attack(String input)    {
         if (amount <= 0 || cooldown > 0)
             return false;
-        System.out.println("Your shield has been set up. Now you can attack.");
+        System.out.println("Your shield has been set up for next round. Now you can attack.");
         suppress = true;
         amount--;
         cooldown = 4;

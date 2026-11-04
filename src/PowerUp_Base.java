@@ -58,6 +58,16 @@ public class PowerUp_Base extends Base {
         pu1.shieldIsActive = shieldIsActive;
         pu2.shieldIsActive = shieldIsActive;
         pu3.shieldIsActive = shieldIsActive;
+
+        multiHit.shieldIsActive = shieldIsActive;
+        fragBomb.shieldIsActive = shieldIsActive;
+        torpedo.shieldIsActive = shieldIsActive;
+        jammingDev.shieldIsActive = shieldIsActive;
+        search.shieldIsActive = shieldIsActive;
+        minefield.shieldIsActive = shieldIsActive;
+        critical.shieldIsActive = shieldIsActive;
+        relocate.shieldIsActive = shieldIsActive;
+
         return switch (input) {
             case Printer.multi -> multiHit.defend("");
             case Printer.fragBomb -> fragBomb.defend("");
