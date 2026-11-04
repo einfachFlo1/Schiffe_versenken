@@ -60,5 +60,4 @@ public class PU_FragBomb extends PowerUp_Base {
         } else {
             return (char) ((input + num));}
     }
-
 }
