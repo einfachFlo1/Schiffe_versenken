@@ -12,9 +12,7 @@ public class PU_MultiHit extends PowerUp_Base {
                 System.out.print(Printer.BLACK);
             System.out.print("While hitting an enemies ship, you are allowed to shoot again.");
             if (amount > 1)
-                System.out.print(" (x2).");
-            else
-                System.out.print(".");
+                System.out.print(" (x2)");
         } else
             System.out.print("-");
         System.out.print(Printer.RESET);

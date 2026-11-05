@@ -12,9 +12,7 @@ public class PU_Critical extends PowerUp_Base {
                 System.out.print(Printer.BLACK);
             System.out.print("The next ship you hit is immediately destroyed.");
             if (amount > 1)
-                System.out.print(" (x2).");
-            else
-                System.out.print(".");
+                System.out.print(" (x2)");
         } else
             System.out.print("-");
         System.out.print(Printer.RESET);

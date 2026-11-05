@@ -12,9 +12,7 @@ public class PU_Shield extends PowerUp_Base {
                 System.out.print(Printer.BLACK);
             System.out.print("Shield your ships for the next 2 rounds.");
             if (amount > 1)
-                System.out.print(" (x2).");
-            else
-                System.out.print(".");
+                System.out.print(" (x2)");
         } else
             System.out.print("-");
         System.out.print(Printer.RESET);

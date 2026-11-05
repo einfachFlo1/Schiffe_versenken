@@ -12,9 +12,7 @@ public class PU_Search extends PowerUp_Base {
                 System.out.print(Printer.BLACK);
             System.out.print("Place a searching rocket, which finds ships in a 2 space radius.");
             if (amount > 1)
-                System.out.print(" (x2).");
-            else
-                System.out.print(".");
+                System.out.print(" (x2)");
         } else
             System.out.print("-");
         System.out.print(Printer.RESET);

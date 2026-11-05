@@ -12,9 +12,7 @@ public class PU_Relocate extends PowerUp_Base {
                 System.out.print(Printer.BLACK);
             System.out.print("Relocate one of your ships.");
             if (amount > 1)
-                System.out.print(" (x2).");
-            else
-                System.out.print(".");
+                System.out.print(" (x2)");
         } else
             System.out.print("-");
         System.out.print(Printer.RESET);
